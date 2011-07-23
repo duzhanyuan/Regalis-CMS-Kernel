@@ -10,12 +10,11 @@ using namespace SCMS;
 
 Kernel::Kernel() {
 	void (*old_terminate)() = set_terminate(Kernel::terminator);	
-	addHeader("Content-type", "text/html; charset=utf-8");
+	setContentType("text/html; charset=utf-8");
 	modules = new ModulesRegistry();
-	#include "modules/register.hpp"
 }
 
-void Kernel::printHeaders() {
+void Kernel::printHeaders() const {
 	for(int i = 0; i < headers.size(); ++i) {
 		cout << headers[i] << "\r\n";
 	}
@@ -50,7 +49,7 @@ Kernel& Kernel::get() {
 	return k;
 }
 
-void Kernel::pingModule(const string& name) {
+void Kernel::pingModule(const string& name) const {
 	KernelModule* mod = modules->get(name);
 	mod->ping();
 }
@@ -59,6 +58,15 @@ ModulesRegistry* Kernel::getModulesRegistry() {
 	return modules;
 }
 
-void Kernel::ping() {
+void Kernel::setContentType(const string& ct) {
+	contentType = ct;
+}
+
+void Kernel::ping() const {
 	cout << "Kernel::ping()" << endl;
+}
+
+void Kernel::flush() const {
+	cout << "Content-type: " << contentType << "\r\n";
+	printHeaders();
 }

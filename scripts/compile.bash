@@ -6,10 +6,10 @@ if [ "$1" = "--static" ]; then
 	#FLAGS="$FLAGS -static-libstdc++ -static-libgcc";
 	FLAGS="$FLAGS -static";
 fi;
-echo "[I] Creating modules list..."
-./create-modules-list.bash
-echo "[I] Compiling CMS..."
-
+echo "[I] Creating modules list...";
+./scripts/create-modules-list.bash;
+echo "[I] Compiling CMS...";
+cd src/;
 find . -name "*.cpp" | while read F; do
 	OBJ="${F/\.cpp/.o}"
 	if [ $F -nt $OBJ ]; then
@@ -23,11 +23,12 @@ find . -name "*.cpp" | while read F; do
 	fi;
 done;
 
-rm objs;
+rm objs > /dev/null 2>&1;
 find . -name "*.o" | while read F; do echo "$F" >> objs; done;
 
-echo "[I] Linking files..."
+echo "[I] Linking files...";
 
-g++ $FLAGS -o index.cgi `cat objs | xargs`
+g++ $FLAGS -o ../index.cgi `cat objs | xargs`;
+rm objs > /dev/null 2>&1;
 
-echo "[I] Binary size: $(du -h index.cgi | cut -f 1)"
+echo "[I] Binary size: $(du -h ../index.cgi | cut -f 1)";

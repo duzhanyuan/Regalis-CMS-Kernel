@@ -1,3 +1,4 @@
+cd src/
 OUT="modules/all.hpp"
 OUT2="modules/register.hpp"
 echo "#ifndef _ALL_MODULES" > $OUT;

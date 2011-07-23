@@ -12,17 +12,21 @@ namespace SCMS {
 	class Kernel {
 		private:
 			ModulesRegistry* modules;
+			string contentType;
 			vector<string> headers;
+
 			Kernel();
 			Kernel(const Kernel&);
-			void printHeaders();
+			void printHeaders() const;
 		public:
 			ModulesRegistry* getModulesRegistry();
-			void pingModule(const string& name);
 			static Kernel& get();
-			void ping();
 			static void terminator();
+			void pingModule(const string& name) const;
+			void ping() const;
 			void addHeader(const string& name, const string& value);
+			void setContentType(const string& ct);
+			void flush() const;
 	};
 }
 
