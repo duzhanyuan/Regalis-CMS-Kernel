@@ -1,8 +1,8 @@
 #include "main.hpp"
-#include "../../kernel.hpp"
+#include "../../../kernel.hpp"
 #include <iostream>
 using namespace std;
-using namespace SCMS;
+using namespace scms;
 
 void ModuleTest::setArg(const string& name, const string& arg) {
 	cout << "ModuleTest::setting new arg: " << name << " with value: " << arg << endl;
@@ -17,3 +17,6 @@ void ModuleTest::ping() {
 	Kernel::get().ping();
 }
 
+KernelModule* factory() {
+	return new ModuleTest();
+}

@@ -1,12 +1,13 @@
 #include "kernel.hpp"
-#include "modules/all.hpp"
 #include <iostream>
-#include <exception>
 #include <cstdlib>
 #include <execinfo.h>
 #include <typeinfo>
+#include <boost/filesystem.hpp>
+#include <dlfcn.h>
 using namespace std;
-using namespace SCMS;
+using namespace scms;
+using namespace boost::filesystem;
 
 Kernel::Kernel() {
 	void (*old_terminate)() = set_terminate(Kernel::terminator);	
@@ -31,7 +32,7 @@ void Kernel::terminator() {
 	// TODO: Print class names...
 	cout << "Content-Type: text/html; charset=utf-8\r\n" << endl;
 	cout.flush();
-	cout << "<h1>Unhandled exception</h1>" << endl;
+	cout << "<h1>Nieoczekiwany błąd</h1>" << endl;
 	void* stack[100];
 	int stackSize = backtrace(stack, 100);
 	char** symbols = backtrace_symbols(stack, stackSize);
@@ -45,8 +46,8 @@ void Kernel::terminator() {
 }
 
 Kernel& Kernel::get() {
-	static Kernel k;
-	return k;
+	static Kernel* k = new Kernel();
+	return *k;
 }
 
 void Kernel::pingModule(const string& name) const {
@@ -69,4 +70,24 @@ void Kernel::ping() const {
 void Kernel::flush() const {
 	cout << "Content-type: " << contentType << "\r\n";
 	printHeaders();
+}
+
+KernelModule* Kernel::getModule(const string& name) {
+	cout << name << " exists?" << endl;
+	if(!modules->exists(name)) {
+		cout << "No, loading..." << endl;
+		if(loadModule(name)) {
+			return modules->get(name);
+		}
+		throw new KernelException("Module doesn't exists...");
+	}
+	return modules->get(name);
+}
+
+KernelModule* Kernel::operator[](const string& name) {
+	return getModule(name);
+}
+
+bool Kernel::loadModule(const string& name) {
+	return false;
 }

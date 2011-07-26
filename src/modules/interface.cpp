@@ -1,7 +1,7 @@
 #include "interface.hpp"
 #include <iostream>
 using std::string;
-using SCMS::KernelModule;
+using scms::KernelModule;
 using std::cout;
 using std::endl;
 

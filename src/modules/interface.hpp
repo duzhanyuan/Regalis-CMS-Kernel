@@ -7,15 +7,15 @@ using std::string;
 using std::map;
 using std::vector;
 
-namespace SCMS {
+namespace scms {
 	class KernelModule {
 		protected:
 			string code;
-			map< string, vector<string> > args;
+			map<string, vector<string> > args;
 		public:
 			virtual string getResult() const;
-			virtual void setArg(const string& name, const string& value);
 			virtual void ping();
+			void setArg(const string& name, const string& value);
 
 	};
 }

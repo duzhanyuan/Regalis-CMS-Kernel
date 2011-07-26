@@ -1,10 +1,12 @@
 #ifndef _MODULE_TEST_HPP
 #define _MODULE_TEST_HPP
 
-#include "../interface.hpp"
-using namespace SCMS;
+#include "../../interface.hpp"
+using namespace scms;
 
-namespace SCMS {
+extern "C" {
+
+namespace scms {
 	class ModuleTest : public KernelModule {
 		public:
 			string getResult() const;
@@ -13,5 +15,7 @@ namespace SCMS {
 	};
 }
 
+KernelModule* factory();
 
+}
 #endif

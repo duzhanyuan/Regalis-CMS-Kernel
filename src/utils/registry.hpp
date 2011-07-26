@@ -6,18 +6,23 @@
 using std::map;
 using std::string;
 
-namespace SCMS {
+namespace scms {
 	template<typename T>
 	class Registry {
 		public:
 			void add(const string& name, T element) {
 				registry[name] = element;
 			}
+
 			T get(const string& name) {
 				return registry[name];
 			}
+
+			bool exists(const string& name) const {
+				return (registry.count(name) != 0);
+			}
 			virtual ~Registry() {}
-		private:
+		protected:
 			map<string, T> registry;
 	};
 }

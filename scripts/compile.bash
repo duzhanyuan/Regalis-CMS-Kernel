@@ -28,7 +28,7 @@ find . -name "*.o" | while read F; do echo "$F" >> objs; done;
 
 echo "[I] Linking files...";
 
-g++ $FLAGS -o ../index.cgi `cat objs | xargs`;
+g++ $FLAGS -o ../index.cgi `cat objs | xargs` -lboost_filesystem -lboost_system;
 rm objs > /dev/null 2>&1;
 
 echo "[I] Binary size: $(du -h ../index.cgi | cut -f 1)";
