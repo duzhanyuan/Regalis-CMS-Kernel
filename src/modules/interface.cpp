@@ -1,18 +1,55 @@
 #include "interface.hpp"
 #include <iostream>
 using std::string;
-using scms::KernelModule;
 using std::cout;
 using std::endl;
+using scms::KernelTemplateModule;
+using scms::KernelModule;
 
-string KernelModule::getResult() const {
-	return "Hello world from KernelModule!";
+const string& KernelModule::getVersion() const {
+	return version;
 }
 
-void KernelModule::setArg(const string& name, const string& value) {
-	args[name].push_back(value);
+const string& KernelModule::getFullName() const {
+	return full_name;
+}
+
+const string& KernelModule::getAuthor() const {
+	return author;
+}
+
+const string& KernelModule::getDescription() const {
+	return description;
+}
+
+bool KernelModule::preInstall() {
+	return true;
+}
+
+bool KernelModule::postInstall() {
+	return true;
+}
+
+bool KernelModule::preRemove() {
+	return true;
+}
+
+bool KernelModule::postRemove() {
+	return true;
 }
 
 void KernelModule::ping() {
-	cout << "Ping from KernelModule!" << endl;
+	cout << "Default KernelTemplateModule::ping()" << endl;
 }
+
+KernelModule::~KernelModule() {}
+
+string KernelTemplateModule::getResult() const {
+	return "Default KernelTemplateModule";
+}
+
+void KernelTemplateModule::setArg(const string& name, const string& value) {
+	args[name].push_back(value);
+}
+
+KernelTemplateModule::~KernelTemplateModule() {}

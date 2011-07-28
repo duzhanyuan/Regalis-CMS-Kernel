@@ -13,7 +13,7 @@ modules:
 			else \
 				OWN_MAKEFILE=1; \
 			fi; \
-			make -C $$FILE/; \
+			make -C $$FILE/ || exit 1; \
 			if [ "$$OWN_MAKEFILE" = "0" ]; then rm $$FILE/Makefile; fi; \
 		fi; \
 	done;
@@ -22,7 +22,6 @@ install: all
 	@echo "Installing modules"
 	@find . -name "*.so" | while read LIB; do \
 		MOD_TYPE=$$(basename $$(dirname $$LIB)); \
-		MOD_NAME=$$(basename $$(dirname $$(dirname $$LIB))); \
 		LIB_NAME=$$(basename $$LIB); \
 		if [ "$$MOD_TYPE" = "admin" ]; then \
 			IDIR=panel; \

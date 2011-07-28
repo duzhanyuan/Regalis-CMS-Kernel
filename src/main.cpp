@@ -4,5 +4,5 @@ using namespace std;
 
 int main(int argc, char** argv) {
 	Kernel& kernel = Kernel::get();
-	kernel.ping();
+	kernel.operate();
 }

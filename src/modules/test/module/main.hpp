@@ -4,18 +4,18 @@
 #include "../../interface.hpp"
 using namespace scms;
 
-extern "C" {
-
 namespace scms {
 	class ModuleTest : public KernelModule {
 		public:
 			string getResult() const;
 			void setArg(const string&, const string&);
 			void ping();
+			void run();
 	};
 }
 
-KernelModule* factory();
-
+extern "C" {
+	KernelModule* factory();
 }
+
 #endif

@@ -4,6 +4,7 @@ KERNEL_LIBS = -ldl -lboost_filesystem -lboost_system
 OBJS = $(patsubst %.cpp, %.o, $(wildcard *.cpp */*.cpp))
 
 all: index.cgi modules
+	
 
 modules:
 	@make -C modules/
