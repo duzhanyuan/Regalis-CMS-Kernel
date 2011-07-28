@@ -7,40 +7,40 @@
  *
 */
 
-#include "kernel.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <execinfo.h>
 #include <typeinfo>
 #include <dlfcn.h>
 #include <libintl.h>
+#include "kernel.hpp"
 using namespace std;
 using namespace rcms;
 
 Kernel::Kernel() {
 	set_terminate(Kernel::terminator);	
-	setContentType("text/html; charset=utf-8");		
+	setContentType("text/html; charset=utf-8");	
 }
 
 void Kernel::operate() {
 	try {
-		log = Logger::get("kernel");	
+		log = KLogger::get("kernel");	
 		log->msg("Getting module init...");
 		getModule("init");
 	} catch(KernelException& e) {
-		abort("KernelException", e);
+		abort("KernelException", &e);
 	} catch(ModuleException& e) {
-		abort("ModuleException", e);
+		abort("ModuleException", &e);
 	} catch(Exception& e) {
-		abort("SCMS Exception", e);
+		abort("SCMS Exception", &e);
 	}
 }
 
-void Kernel::abort(const string& name, Exception& e) {
+void Kernel::abort(const string& name, Exception* e) {
 	cout << "Content-type: text/html; charset=utf-8\r\n" << endl;
 	cout.flush();
 	cout << "<h1>Błąd " << name << "</h1>" << endl; 
-	cout << "<p>Komunikat: " << e.what() << endl;
+	cout << "<p>Komunikat: " << e->what() << endl;
 	printBacktrace(); 
 	exit(0);
 }
@@ -103,7 +103,7 @@ void Kernel::flush() const {
 }
 
 KernelModule* Kernel::getModule(const string& name) {
-	if(!modules.exists(name));
+	if(!modules.exists(name))
 		loadModule(name);
 	return modules.get(name);
 }
@@ -122,4 +122,9 @@ void Kernel::loadModule(const string& name) {
 		throw KernelException("Unable to find factory in module " + name + "(" + dlerror() + ")");
 	factory_t* factory = (factory_t*)factory_s;
 	modules.add(name, factory());
+	modules.get(name)->setLogger(KLogger::get(name));
+	if(!modules.get(name)->init()) {
+		throw ModuleException("Unable to initialize module %s. Check logs for details..." % name);
+	}
+	// TODO: Installation...
 }

@@ -13,6 +13,8 @@
 #include <map>
 #include <vector>
 #include <sstream>
+#include "../logger_interface.hpp"
+#include "../exceptions.hpp"
 using std::string;
 using std::map;
 using std::vector;
@@ -26,15 +28,19 @@ namespace rcms {
 			string author;
 			string description;
 			string full_name;
+			rcms::Logger* log;
 			virtual bool preInstall();
 			virtual bool postInstall();
 			virtual bool preRemove();
 			virtual bool postRemove();
+			//friend class Installer;
 		public:
 			const string& getVersion() const;
 			const string& getFullName() const;
 			const string& getAuthor() const;
 			const string& getDescription() const;
+			void setLogger(rcms::Logger* logger);
+			virtual bool init() = 0;
 			virtual void ping();
 			virtual ~KernelModule();
 	};

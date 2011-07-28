@@ -15,6 +15,7 @@
 #include "sformatter.hpp"
 #include "modules/interface.hpp"
 #include "utils/registry.hpp"
+#include "logger_interface.hpp"
 using std::string;
 using std::ofstream;
 using namespace rcms;
@@ -25,28 +26,22 @@ namespace rcms {
 	class Kernel {
 		private:
 
-			class Logger {
+			class KLogger : public Logger {
 				private:
-					Logger();
-					Logger(const string& name);
-					Logger(const Logger&);
-					Logger& operator=(const Logger&);
+					KLogger();
+					KLogger(const string& name);
+					KLogger(const KLogger&);
+					KLogger& operator=(const KLogger&);
 					ofstream out;
 				public:
-					enum Type {
-						OK,
-						WARNING,
-						ERROR
-					};
 					static Logger* get(const string& name);
 					void msg(const string& msg);
-					void msg(const string& msg, Type type);
+					void msg(const string& msg, Logger::Type type);
 					Logger& operator<<(const string& msg);
 					void flush();
-					virtual ~Logger();
+					virtual ~KLogger();
 			};
 
-			class Logger;
 			ModulesRegistry modules;
 			string contentType;
 			vector<string> headers;
@@ -55,7 +50,7 @@ namespace rcms {
 			Kernel(const Kernel&);
 			void printHeaders() const;
 			void loadModule(const string& name);
-			void abort(const string& name, Exception& e);
+			void abort(const string& name, Exception* e);
 			static void printBacktrace();
 		public:
 			static Kernel& get();

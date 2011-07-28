@@ -16,10 +16,8 @@ using namespace rcms;
 namespace rcms {
 	class ModuleTest : public KernelModule {
 		public:
-			string getResult() const;
-			void setArg(const string&, const string&);
 			void ping();
-			void run();
+			bool init();
 	};
 }
 

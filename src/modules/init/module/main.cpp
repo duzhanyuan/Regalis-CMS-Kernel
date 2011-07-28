@@ -3,14 +3,10 @@
 using namespace std;
 using namespace rcms;
 
-void InitModule::ping() {
-	cout << "Ping from Init module..." << endl;
-}
-
-void InitModule::run() {
-	cout << "Initializing modules..." << endl;
+bool InitModule::init() throw(ModuleException) {
+	*log << "Initializing modules...";
 	Kernel::get().getModule("test")->ping();
-	cout << "OK! :)" << endl;
+	*log << "OK! :)";
 }
 
 extern "C" {

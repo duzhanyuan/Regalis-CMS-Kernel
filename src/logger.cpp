@@ -13,23 +13,23 @@
 #include "exceptions.hpp"
 using namespace rcms;
 
-Kernel::Logger::Logger(const string& name) {
+Kernel::KLogger::KLogger(const string& name) {
 	string file = "var/log/%s.log" % name;
 	out.open(file.c_str(), ios_base::app);
 	if(!out.is_open())
 		throw KernelException("Unable to open log file for writing (%s)" % file);
 }
 
-Kernel::Logger::Logger() {
-	Logger("kernel");
+Kernel::KLogger::KLogger() {
+	KLogger("kernel");
 }
 
-Kernel::Logger* Kernel::Logger::get(const string& name) {
-	Logger* logger = new Logger(name);
+Logger* Kernel::KLogger::get(const string& name) {
+	Logger* logger = new KLogger(name);
 	return logger;
 }
 
-void Kernel::Logger::msg(const string& msg, Type type) {
+void Kernel::KLogger::msg(const string& msg, Logger::Type type) {
 	string h;
 	switch(type) {
 		case OK:
@@ -48,19 +48,19 @@ void Kernel::Logger::msg(const string& msg, Type type) {
 	out << "[" << h << "] " << "[" << Time::format() << "]: " << msg << endl;
 }
 
-void Kernel::Logger::msg(const string& message) {
+void Kernel::KLogger::msg(const string& message) {
 	msg(message, OK);
 }
 
-void Kernel::Logger::flush() {
+void Kernel::KLogger::flush() {
 	out.flush();
 }
 
-Kernel::Logger& Kernel::Logger::operator<<(const string& message) {
+Logger& Kernel::KLogger::operator<<(const string& message) {
 	msg(message);
 	return *this;
 }
 
-Kernel::Logger::~Logger() {
+Kernel::KLogger::~KLogger() {
 	flush();
 }

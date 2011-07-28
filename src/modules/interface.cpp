@@ -51,6 +51,10 @@ void KernelModule::ping() {
 	cout << "Default KernelTemplateModule::ping()" << endl;
 }
 
+void KernelModule::setLogger(Logger* logger) {
+	log = logger;
+}
+
 KernelModule::~KernelModule() {}
 
 string KernelTemplateModule::getResult() const {

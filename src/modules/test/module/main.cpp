@@ -13,17 +13,14 @@
 using namespace std;
 using namespace rcms;
 
-string ModuleTest::getResult() const {
-	return "ModuleTest";
-}
-
 void ModuleTest::ping() {
 	cout << "Hello world from test module!" << endl;
 	Kernel::get().ping();
 }
 
-void ModuleTest::run() {
-	cout << "Hello!" << endl;
+bool ModuleTest::init() {
+	*log << "Hello!";
+	return false;
 }
 
 extern "C" {
