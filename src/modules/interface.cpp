@@ -1,10 +1,19 @@
+/* 
+ *
+ * Copyright (c) by Patryk Jaworski
+ * Contact:
+ *  -> E-mail: Patryk Jaworski <skorpion9312@gmail.com>
+ *  -> XMPP/Jabber: Patryk Jaworski <skorpion9312@jabber.org>
+ *
+*/
+
 #include "interface.hpp"
 #include <iostream>
 using std::string;
 using std::cout;
 using std::endl;
-using scms::KernelTemplateModule;
-using scms::KernelModule;
+using rcms::KernelTemplateModule;
+using rcms::KernelModule;
 
 const string& KernelModule::getVersion() const {
 	return version;

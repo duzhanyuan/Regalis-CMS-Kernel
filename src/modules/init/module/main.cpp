@@ -1,7 +1,7 @@
 #include "main.hpp"
 #include <iostream>
 using namespace std;
-using namespace scms;
+using namespace rcms;
 
 void InitModule::ping() {
 	cout << "Ping from Init module..." << endl;

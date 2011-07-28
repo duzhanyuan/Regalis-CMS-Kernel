@@ -1,9 +1,9 @@
 #ifndef _MODULE_INIT_HPP
 #define _MODULE_INIT_HPP
 #include "../../module.hpp"
-using namespace scms;
+using namespace rcms;
 
-namespace scms {
+namespace rcms {
 	class InitModule : public KernelModule {
 		public:
 			void ping();

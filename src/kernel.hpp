@@ -1,3 +1,12 @@
+/* 
+ *
+ * Copyright (c) by Patryk Jaworski
+ * Contact:
+ *  -> E-mail: Patryk Jaworski <skorpion9312@gmail.com>
+ *  -> XMPP/Jabber: Patryk Jaworski <skorpion9312@jabber.org>
+ *
+*/
+
 #ifndef _KERNEL_HPP
 #define _KERNEL_HPP
 #include <string>
@@ -8,11 +17,11 @@
 #include "utils/registry.hpp"
 using std::string;
 using std::ofstream;
-using namespace scms;
+using namespace rcms;
 
 typedef Registry<KernelModule*> ModulesRegistry;
 
-namespace scms {
+namespace rcms {
 	class Kernel {
 		private:
 

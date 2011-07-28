@@ -1,3 +1,10 @@
+#
+# Copyright (c) by Patryk Jaworski
+# Contact:
+#  -> E-mail: Patryk Jaworski <skorpion9312@gmail.com>
+#  -> XMPP/Jabber: Patryk Jaworski <skorpion9312@jabber.org>
+#
+
 include make_config.mk
 
 ROOTDIR=$(abspath $(DSTDIR))

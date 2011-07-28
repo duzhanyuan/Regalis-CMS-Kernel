@@ -1,3 +1,12 @@
+/* 
+ *
+ * Copyright (c) by Patryk Jaworski
+ * Contact:
+ *  -> E-mail: Patryk Jaworski <skorpion9312@gmail.com>
+ *  -> XMPP/Jabber: Patryk Jaworski <skorpion9312@jabber.org>
+ *
+*/
+
 #ifndef _REGISTRY_HPP
 #define _REGISTRY_HPP
 #include <map>
@@ -6,7 +15,7 @@
 using std::map;
 using std::string;
 
-namespace scms {
+namespace rcms {
 	template<typename T>
 	class Registry {
 		public:

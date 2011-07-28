@@ -1,8 +1,17 @@
+/* 
+ *
+ * Copyright (c) by Patryk Jaworski
+ * Contact:
+ *  -> E-mail: Patryk Jaworski <skorpion9312@gmail.com>
+ *  -> XMPP/Jabber: Patryk Jaworski <skorpion9312@jabber.org>
+ *
+*/
+
 #include "kernel.hpp"
 #include "time.hpp"
 #include "sformatter.hpp"
 #include "exceptions.hpp"
-using namespace scms;
+using namespace rcms;
 
 Kernel::Logger::Logger(const string& name) {
 	string file = "var/log/%s.log" % name;

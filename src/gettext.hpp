@@ -3,7 +3,7 @@
 #include <string>
 using std::string;
 
-namespace scms {
+namespace rcms {
 	
 	void initGettext(const string& language);
 	void bindDomain(const string& name, const string& file);

@@ -1,3 +1,12 @@
+/* 
+ *
+ * Copyright (c) by Patryk Jaworski
+ * Contact:
+ *  -> E-mail: Patryk Jaworski <skorpion9312@gmail.com>
+ *  -> XMPP/Jabber: Patryk Jaworski <skorpion9312@jabber.org>
+ *
+*/
+
 #ifndef _INTERFACE_HPP
 #define _INTERFACE_HPP
 #include <string>
@@ -9,7 +18,7 @@ using std::map;
 using std::vector;
 using std::ostringstream;
 
-namespace scms {
+namespace rcms {
 
 	class KernelModule {
 		protected:
@@ -42,6 +51,6 @@ namespace scms {
 	};
 }
 
-typedef scms::KernelModule* factory_t();
+typedef rcms::KernelModule* factory_t();
 
 #endif
