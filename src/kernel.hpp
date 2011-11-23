@@ -9,8 +9,11 @@
 
 #ifndef _KERNEL_HPP
 #define _KERNEL_HPP
+#define _(String) gettext(String)
+
 #include <string>
 #include <fstream>
+#include <mysql++.h>
 #include "exceptions.hpp"
 #include "sformatter.hpp"
 #include "modules/interface.hpp"
@@ -42,19 +45,37 @@ namespace rcms {
 					virtual ~KLogger();
 			};
 
+			class MySQL {
+				private:
+					mysqlpp::Connection* connection;
+					Logger* log;
+					MySQL(const MySQL&);
+					MySQL& operator=(const MySQL&);
+				public:
+					MySQL(Logger* logger) throw (KernelException);
+					mysqlpp::Query* getQuery();
+			};
+
 			ModulesRegistry modules;
 			string contentType;
 			vector<string> headers;
-			Kernel();
 			Logger* log;
+			MySQL* mysql;
+			Kernel();
 			Kernel(const Kernel&);
+			Kernel& operator=(const Kernel&);
 			void printHeaders() const;
+			void getModuleDependencies(const string& name, vector<string>& deps);
+			void* loadSymbol(const string& path, const string& name);
 			void loadModule(const string& name);
 			void abort(const string& name, Exception* e);
+			void checkInstallation() throw(KernelException);
+			static void copyright();
 			static void printBacktrace();
 		public:
 			static Kernel& get();
 			static void terminator();
+			mysqlpp::Query* getQuery();
 			void operate();
 			void pingModule(const string& name);
 			void ping() const;

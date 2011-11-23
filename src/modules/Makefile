@@ -8,6 +8,8 @@
 include ../../make_config.mk
 include ../../defaults.mk
 
+DEPS=$(wildcard */*.dep)
+
 all: modules
 
 modules:
@@ -25,18 +27,30 @@ modules:
 		fi; \
 	done;
 
-install: all
+install: all deps sql
 	@echo "Installing modules"
 	@find . -name "*.so" | while read LIB; do \
 		MOD_TYPE=$$(basename $$(dirname $$LIB)); \
 		LIB_NAME=$$(basename $$LIB); \
 		if [ "$$MOD_TYPE" = "admin" ]; then \
-			IDIR=panel; \
+			IDIR=admin; \
 		else \
 			IDIR=modules; \
 		fi; \
 		$(INSTALL) -v $$LIB $(ROOTDIR)/lib/$$IDIR/$$LIB_NAME; \
 	done; 
+
+deps: $(DEPS)
+	@for DEP in $^; do \
+		$(INSTALL) -v $$DEP "$(ROOTDIR)/etc/modules/$$(basename $$(dirname $$DEP)).dep"; \
+	done;
+
+sql:
+	@echo "Copying install SQL scripts..."
+	@find . -name "install.sql" | while read SQL; do \
+		MODULE=$$(basename $$(dirname "$$SQL")); \
+		$(INSTALL) -v "$$SQL" "$(ROOTDIR)/etc/modules/install/$$MODULE.sql"; \
+	done;
 
 clean:
 	@find . -name "*.*o" | while read FILE; do rm -v $$FILE; done;
@@ -45,3 +59,4 @@ clean:
 .PHONY: modules
 .PHONY: install
 .PHONY: clean
+.PHONY: deps

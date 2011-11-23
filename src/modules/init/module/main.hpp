@@ -5,7 +5,7 @@
 namespace rcms {
 	class InitModule : public KernelModule {
 		public:
-			bool init() throw(ModuleException);
+			bool init();
 	};
 }
 

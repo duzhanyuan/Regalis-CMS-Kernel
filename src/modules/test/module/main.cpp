@@ -19,8 +19,27 @@ void ModuleTest::ping() {
 }
 
 bool ModuleTest::init() {
-	*log << "Hello!";
-	return false;
+	return true;
+}
+
+const char* ModuleTest::test() const {
+	return "I'm OK!";
+}
+
+bool ModuleTest::preInstall() {
+	return true;
+}
+
+bool ModuleTest::postInstall() {
+	return true;
+}
+
+bool ModuleTest::preRemove() {
+	return true;
+}
+
+bool ModuleTest::postRemove() {
+	return true;
 }
 
 extern "C" {

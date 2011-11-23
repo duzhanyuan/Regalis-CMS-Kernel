@@ -15,13 +15,14 @@
 #include <sstream>
 #include "../logger_interface.hpp"
 #include "../exceptions.hpp"
+#include "../utils/installer.hpp"
 using std::string;
 using std::map;
 using std::vector;
 using std::ostringstream;
 
 namespace rcms {
-
+	
 	class KernelModule {
 		protected:
 			string version;
@@ -29,11 +30,6 @@ namespace rcms {
 			string description;
 			string full_name;
 			rcms::Logger* log;
-			virtual bool preInstall();
-			virtual bool postInstall();
-			virtual bool preRemove();
-			virtual bool postRemove();
-			//friend class Installer;
 		public:
 			const string& getVersion() const;
 			const string& getFullName() const;

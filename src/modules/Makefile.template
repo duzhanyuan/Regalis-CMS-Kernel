@@ -21,9 +21,9 @@ endif
 all: $(LIBS)
 
 module/%.so: $(MODULE_OBJS)
-	$(CC) $(LDFLAG) -shared -Wl,-soname,$(notdir $@) $^ -o $@
+	$(CC) $(LDFLAGS) -shared -Wl,-soname,$(notdir $@) $^ -o $@
 
 admin/%.so: $(ADMIN_OBJS)
-	$(CC) $(LDFLAG) -shared -Wl,-soname,$(notdir $@) $^ -o $@
+	$(CC) $(LDFLAGS) -shared -Wl,-soname,$(notdir $@) $^ -o $@
 
 .PHONY: all

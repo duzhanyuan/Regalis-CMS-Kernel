@@ -1,3 +1,10 @@
+#
+# Copyright (c) by Patryk Jaworski
+# Contact:
+#  -> E-mail: Patryk Jaworski <skorpion9312@gmail.com>
+#  -> XMPP/Jabber: Patryk Jaworski <skorpion9312@jabber.org>
+#
+
 include ../../../make_config.mk
 include ../../../defaults.mk
 
@@ -14,9 +21,9 @@ endif
 all: $(LIBS)
 
 module/%.so: $(MODULE_OBJS)
-	$(CC) $(LDFLAG) -shared -Wl,-soname,$(notdir $@) $^ -o $@
+	$(CC) $(LDFLAGS) -shared -Wl,-soname,$(notdir $@) $^ -o $@
 
 admin/%.so: $(ADMIN_OBJS)
-	$(CC) $(LDFLAG) -shared -Wl,-soname,$(notdir $@) $^ -o $@
+	$(CC) $(LDFLAGS) -shared -Wl,-soname,$(notdir $@) $^ -o $@
 
 .PHONY: all

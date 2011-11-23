@@ -31,7 +31,7 @@ const string& KernelModule::getDescription() const {
 	return description;
 }
 
-bool KernelModule::preInstall() {
+/*bool KernelModule::preInstall() {
 	return true;
 }
 
@@ -45,7 +45,7 @@ bool KernelModule::preRemove() {
 
 bool KernelModule::postRemove() {
 	return true;
-}
+}*/
 
 void KernelModule::ping() {
 	cout << "Default KernelTemplateModule::ping()" << endl;

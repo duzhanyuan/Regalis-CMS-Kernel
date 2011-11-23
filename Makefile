@@ -20,11 +20,13 @@ dirs:
 clean:
 	@make -C src/ clean
 
-install: all
+install: all data
 	@make -C src/ install
+	@make -C src/ translations
 
-.PHONY: all
-.PHONY: dirs
-.PHONY: clean
-.PHONY: install
+data:
+	@echo "Installing default data files"
+	cp -ruv src/data/* $(ROOTDIR)/
+
+.PHONY: all clean dirs install translations data
 

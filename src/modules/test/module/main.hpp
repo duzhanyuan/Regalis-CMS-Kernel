@@ -14,10 +14,16 @@
 using namespace rcms;
 
 namespace rcms {
-	class ModuleTest : public KernelModule {
+	class ModuleTest : public KernelModule, public Installable {
 		public:
 			void ping();
 			bool init();
+			const char* test() const;
+		protected:
+			bool preInstall();
+			bool postInstall();
+			bool preRemove();
+			bool postRemove();
 	};
 }
 

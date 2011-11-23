@@ -7,7 +7,10 @@
 
 CC = g++
 CFLAGS = -Wall -Os -rdynamic -fPIC
+CFLAGS += -I/usr/include/mysql++ -I/usr/include/mysql
 LDFLAGS = -rdynamic
 DSTDIR ?= bin
-DIRS = lib/modules lib/panel lib/content-types etc/modules etc/content-types var/log
+DIRS = lib/modules lib/admin lib/content-types etc/modules etc/modules/install etc/content-types/install var/log usr/share/locale
 INSTALL=install -Dm 744
+AUTHOR=Patryk Jaworski
+AUTHOR_EMAIL=skorpion9312@gmail.com
