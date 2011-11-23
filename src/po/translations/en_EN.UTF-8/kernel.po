@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Patryk Jaworski <skorpion9312@gmail.com>
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Regalis CMS 4.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-07-28 22:06+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n UTF-8"
+
+#: kernel.cpp:34
+msgid "Getting module init..."
+msgstr ""
+
+#: kernel.cpp:48
+msgid "Błąd"
+msgstr "Error"
+
+#: kernel.cpp:49
+msgid "Komunikat"
+msgstr "Message"
+
+#: kernel.cpp:72
+msgid "Nieoczekiwany błąd"
+msgstr "Unecspected error"
+
+#: kernel.cpp:114
+msgid "Kontakt z autorem"
+msgstr "Contact with author"
+
+#: kernel.cpp:134
+#, c-format
+msgid "Nie można znaleźć factory() dla modułu %s (%s)"
+msgstr "Unable to find factory() in module %s (%s)"
+
+#: kernel.cpp:139
+#, c-format
+msgid "Nie można zainicjalizować modułu %s. Sprawdź logi w celu uzyskania większej ilości informacji"
+msgstr "Unable to initialize module %s. Check logs for details"
